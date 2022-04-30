@@ -64,6 +64,13 @@
 			primary,
 			focusElement,
 		};
+
+    // Use the parent base when the base is null. This prevents an error
+    // when routes transition out.
+    if (updatedRoute.base === null) {
+        updatedRoute.base = $parentBase || "/";
+    }
+
 		route.set(updatedRoute);
 		// If we're in SSR mode and the Route matches,
 		// `registerRoute` will return the match
